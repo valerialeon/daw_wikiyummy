@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Bienvenido!</title>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/styles.css" rel="stylesheet" />
+    <script src="../javascript/validations.js"></script>
+    <script src="../jquery-3.6.0.min.js"></script>
+</head>
+
+<body id="page-top">
+    <!-- Navigation-->
+    <!-- Mashead header-->
+    <header class="masthead">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-12">
+                    <!-- Mashead text and app badges-->
+                    <br>
+                    <br>
+                    <div class="mb-5 mb-lg-0 text-center text-lg-start">
+                        <h1 class="display-1 lh-1 mb-3">WikiYummy</h1>
+                        <p class="lead fw-normal text-muted mb-5"> Déjales saber a tus vecinos qué cosas
+                        deliciosas estarás preparando ;).
+
+                        <form action="" method="post" class="bodytext" name="ingresar-evento" onsubmit="return validateInputs()">
+                            <div class="divsize">
+                                <fieldset class="lead fw-normal text-muted mb-5 align" >
+                                    <legend class="bodytextBold">
+                                        ¿Dónde?
+                                    </legend>
+                                    Región*:
+                                    <select class="lead fw-normal text-muted mb-4" id="region" name="region" required onchange="Comunas()">
+                                        <option value="0">SELECCIONE UNA REGIÓN</option>
+                                        <option value="13">Metropolitana de Santiago</option>
+                                        <option value="11">Aysén del Gral. C. Ibáñez del Campo</option>
+                                        <option value="2">Antofagasta</option>
+                                        <option value="15">Arica y Parinacota</option>
+                                        <option value="3">Atacama</option>
+                                        <option value="4">Coquimbo</option>
+                                        <option value="8">Del Bíobío</option>
+                                        <option value="6">Del Libertador B. O'Higgins</option>
+                                        <option value="7">Del Maule</option>
+                                        <option value="9">La Araucanía</option>
+                                        <option value="10">Los Lagos</option>
+                                        <option value="14">Los Ríos</option>
+                                        <option value="12">Magallanes y de La Antártica Chilena</option>
+                                        <option value="16">Ñuble</option>
+                                        <option value="1">Tarapacá</option>
+                                        <option value="5">Valparaíso</option>
+                                    </select>
+                                    <br>
+
+                                    Comuna*:
+                                    <select class="lead fw-normal text-muted mb-4" id="comuna" name="comuna">
+                                        <option value="-1">SELECCIONE UNA COMUNA</option>
+                                    </select>
+                                    <br><br>
+                                    Sector:
+                                    <input type="text"  name="sector">
+                                    <br><br>
+                                    <legend class="bodytextBold">
+                                        ¿Quién ofrece?
+
+                                    </legend>
+                                    Nombre*:
+                                    <input type="text" maxlength="200" name="nombre" required><br><br>
+                                    Correo*:
+                                    <input type="text" maxlength="100" name="email" required><br><br>
+                                    Número de teléfono:
+                                    <input type="text" maxlength="15" name="celular"><br><br>
+                                    Redes Sociales:
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select class="select align lead fw-normal text-muted mb-4" name="red-social" multiple="multiple">
+                                                <option value="1" onclick="return rrss('fb-user')">Facebook</option>
+                                                <option value="2" onclick="return rrss('tw-user')">Twitter </option>
+                                                <option value="3" onclick="return rrss('inst-user')">Instagram</option>
+                                                <option value="4" onclick="return rrss('tik-user')">Tik Tok</option>
+                                                <option value="5" onclick="return rrss('other-user')">Otra</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4" >
+                                            <label>
+                                                <input id="fb-user" name="fb-user" placeholder="Facebook" style="display: none">
+                                            </label>
+                                            <label>
+                                                <input id="tw-user" name="tw-user" placeholder="Twitter" style="display: none">
+                                            </label>
+                                            <label>
+                                                <input id="inst-user" name="inst-user" placeholder="Instagram" style="display: none">
+                                            </label>
+                                            <label>
+                                                <input id="tik-user" name="tik-user" placeholder="Tik Tok" style="display: none">
+                                            </label>
+                                            <label>
+                                                <input id="other-user" name="other-user" placeholder="Other" style="display: none">
+                                            </label>
+
+                                        </div>
+
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <legend class="bodytextBold">
+                                        ¿Cuándo y qué se ofrece?
+                                    </legend>
+                                    Día-Hora de inicio*:
+                                    <input type="datetime-local" id="dia-hora-inicio" name="dia-hora-inicio" maxlength="20" class="lead fw-normal text-muted mb-4" placeholder="yyyy-mm-dd hh:mm" onload="actualDate();" onsubmit="validateDate();" required value="">
+                                    <br>
+                                    Día-Hora de término*:
+                                    <input type="datetime-local" id="dia-hora-termino" name="dia-hora-termino" maxlength="20" class="lead fw-normal text-muted mb-4" placeholder="yyyy-mm-dd hh:mm" onload="actualEndDate();" onchange="validateDate();" required value="">
+                                    <br>
+                                    Descripción:
+                                    <textarea rows="10" cols="50" name="descripción-evento" class="align lead fw-normal text-muted mb-4" >Cuéntanos un poco sobre este evento :D
+                                    </textarea>
+                                    <br>
+                                    Tipo de comida*:
+                                    <select class="select align lead fw-normal text-muted mb-4" name="tipo-comida">
+                                        <option value="-1" >--Seleccione una opción--</option>
+                                        <option value="0">Al paso</option>
+                                        <option value="1">Alemana</option>
+                                        <option value="2">Árabe</option>
+                                        <option value="3">Argentina</option>
+                                        <option value="4">Asiática</option>
+                                        <option value="5">Australiana</option>
+                                        <option value="6">Brasileña</option>
+                                        <option value="7">Café y snacks</option>
+                                        <option value="8">Carnes</option>
+                                        <option value="9">Casera</option>
+                                        <option value="10">Chilena</option>
+                                        <option value="11">China</option>
+                                        <option value="12">Cocina de Autor</option>
+                                        <option value="13">Comida rápida</option>
+                                        <option value="14">Completos</option>
+                                        <option value="15">Coreana</option>
+                                        <option value="16">Cubana</option>
+                                        <option value="17">Española</option>
+                                        <option value="18">Exótica</option>
+                                        <option value="19">Francesa</option>
+                                        <option value="20">Gringa</option>
+                                        <option value="21">Hamburguesa</option>
+                                        <option value="22">Helados</option>
+                                        <option value="23">India</option>
+                                        <option value="24">Internacional</option>
+                                        <option value="25">Italiana</option>
+                                        <option value="26">Latinoamericana</option>
+                                        <option value="27">Mediterránea</option>
+                                        <option value="28">Mexicana</option>
+                                        <option value="29">Nikkei</option>
+                                        <option value="30">Parrillada</option>
+                                        <option value="31">Peruana</option>
+                                        <option value="32">Pescados y mariscos</option>
+                                        <option value="33">Picoteos</option>
+                                        <option value="34">Pizzas</option>
+                                        <option value="35">Pollos y pavos</option>
+                                        <option value="36">Saludable</option>
+                                        <option value="37">Sándwiches</option>
+                                        <option value="38">Suiza</option>
+                                        <option value="39">Japonesa</option>
+                                        <option value="40">Sushi</option>
+                                        <option value="41">Tapas</option>
+                                        <option value="42">Thai</option>
+                                        <option value="43">Vegana</option>
+                                        <option value="44">Vegetariana</option>
+
+                                    </select>
+                                    <br>
+                                    Foto de referencia* :
+                                    <input type="file" name="foto-comida" class="lead fw-normal text-muted mb-4">
+                                    <button name="add-images" type="button" class="button">Agregar imagen</button>
+
+
+                                </fieldset>
+                                <button id="enviar" type="submit" class="button">Enviar</button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src=""></script>
+</body>
+
+</html>
